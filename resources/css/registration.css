@@ -1,0 +1,36 @@
+#form-side{
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius:var(--border-radius-1); 
+}
+
+
+.text{
+    color:var(--text-on-whitebg)!important ;
+}
+
+.register-btn{
+    background-color: var(white);
+    color: var(--text-on-whitebg);
+}
+
+.register-btn:hover{
+    background-color: var(--first-background)!important;
+    color: white;
+}
+
+a[href="/login"]:hover{
+    text-decoration: underline !important;
+}
+
+.success{
+display: block !important;
+background-color: var(--success);
+color:var(--white);
+}
+
+.error{
+display: block !important;
+background-color: var(--error);
+color: var(--white);
+}

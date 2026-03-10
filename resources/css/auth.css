@@ -1,0 +1,93 @@
+:root{
+    --first-background:#6071B6 ;
+    --white:#fff;
+    --border:#E9ECEF ;
+    --text-on-whitebg: #51619e;
+    --black-shadow: #0c1021;
+    --background-card: #eff0f8;
+    --error:#DC143C;
+    --success:#008000;
+    --san-marino-100: #d9dced;
+    --san-marino-200: #b6bdde;
+    --san-marino-300: #98a1d1;
+    --san-marino-400: #7b88c4;
+    --san-marino-700: #3f4b7d;
+    --san-marino-800: #2b3459;
+    --san-marino-900: #161c34;
+    --border-radius-1:18px;
+}
+
+body{
+    background-color: var(--first-background);
+}
+
+.main-container{
+    margin-top:2rem ;
+    padding: 2rem;
+    width: 70%;   
+    color: white; 
+}
+
+.second-container{
+    border-radius:var(--border-radius-1); 
+    box-shadow:28px 28px 50px 0 var(--black-shadow) ;
+}
+/* Logo text */
+.logo{
+    font-family: capuche;
+}
+
+#welcome-side{
+padding: 2rem;
+}
+
+
+.error{
+    color: #DC143C;
+}
+
+
+/* Responsiveness */
+
+/* laptop/desktop */
+
+@media (min-width:1025px) and (max-width:1280px){
+
+}
+
+/* Mobile protrait */
+
+@media (min-width  :320px ) and (max-width:480px){
+    .main-container{
+    width: 90%;   
+    }
+    .second-container{
+        display: flex;
+        flex-direction: column;
+    }
+}
+
+/* mobile Landscape */
+
+@media (min-width: 481px) and (max-width:767px){
+    .main-container{
+    width: 90%;   
+    }
+}
+
+/* Tablet portrait */
+
+@media (min-width: 768px) and (max-width:1024px){
+    .main-container{
+    width: 90%;   
+    }
+}
+
+/* Tablet landscape */
+
+@media(min-width:768px) and (max-width:1024) and(orientation: landscape){
+    .main-container{
+        width: 90%;   
+    }
+}
+

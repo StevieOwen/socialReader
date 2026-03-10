@@ -1,0 +1,65 @@
+:root{
+    --first-background:#6071B6 ;
+    --white:#fff;
+    --border:#E9ECEF ;
+    --text-on-whitebg: #51619e;
+    --black-shadow: #0c1021;
+    --background-card: #eff0f8;
+    --san-marino-100: #d9dced;
+    --san-marino-200: #b6bdde;
+    --san-marino-300: #98a1d1;
+    --san-marino-400: #7b88c4;
+    --san-marino-700: #3f4b7d;
+    --san-marino-800: #2b3459;
+    --san-marino-900: #161c34;
+    --border-radius-1:18px;
+}
+
+body{
+    background-color: var(--first-background);
+}
+
+.main-container{
+    margin-top:4rem ;
+    padding: 2rem;
+    width: 70%;   
+    color: white; 
+}
+
+.login-container{
+    border-radius:var(--border-radius-1); 
+    box-shadow:28px 28px 50px 0 var(--black-shadow) ;
+}
+/* Logo text */
+.logo{
+    font-family: capuche;
+}
+
+#welcome-side{
+padding: 2rem;
+}
+
+#form-side{
+    background-color: var(--white);
+    padding: 2rem;
+    border-radius:var(--border-radius-1); 
+}
+
+
+.text{
+    color:var(--text-on-whitebg)!important ;
+}
+
+.login-btn{
+    background-color: var(white);
+    color: var(--text-on-whitebg);
+}
+
+.login-btn:hover{
+    background-color: var(--first-background)!important;
+    color: white;
+}
+
+a[href="/register"]:hover{
+    text-decoration: underline !important;
+}
