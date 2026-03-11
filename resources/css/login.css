@@ -50,12 +50,12 @@ padding: 2rem;
     color:var(--text-on-whitebg)!important ;
 }
 
-.login-btn{
+.login-btn,.reset-btn,.verify-btn{
     background-color: var(white);
     color: var(--text-on-whitebg);
 }
 
-.login-btn:hover{
+.login-btn:hover, .verify-btn:hover,.reset-btn:hover{
     background-color: var(--first-background)!important;
     color: white;
 }

@@ -248,8 +248,55 @@ class AuthController extends Controller
             }   
 
         }
+        public function renderResetPassword(){
+            return view('Auth/resetPassword');
+        }
 
+        public function checkEmail(Request $request){
 
+            $datas=$request->all();
+            $email=$datas['cust_email'];
 
+            $customer=Customer::where('cust_email', $email)->first();
+            if($customer){
+                 return response()->json([
+                        'status' => 'success',
+                        'message' => 'User exist',
+
+                ], 201);
+                exit;
+            }else{
+                     return response()->json([
+                        'status' => 'error',
+                        'message' => 'Email not found'
+                    ], 500);
+                    exit;
+            }
+        }
+
+        public function resetPassword(Request $request){
+            $pattern = '/^(?=.*[A-Z])(?=.*[!@#$%^&*(),.?":{}|<>])(?=.{8,}).*$/';
+            $data=$request->all();
+            $pwd=$data['cust_password'];
+            $cust_email= $data['cust_email'];
+            if (preg_match($pattern, $pwd)) {
+                $pwd=Hash::make($pwd);
+                $customer=Customer::where('cust_email',$cust_email)->first();
+                $customer->cust_password=$pwd;
+                $customer->save();
+                 return response()->json([
+                        'status' => 'success',
+                        'message' => 'Password sucessfully reset',
+
+                ], 201);
+               
+            } else {
+                return response()->json([
+                'status' => 'error',
+                'message' => 'The password should contain at least 8 character, 1 capital letter, 1 special character'
+            ], 500);
+            }
+
+        }
 }
 

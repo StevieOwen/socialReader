@@ -24,6 +24,7 @@ loginForm.addEventListener('submit',(e)=>{
       .then(data=>{
         console.log(data);
         if(data.status=="success"){
+             alert.classList.remove('error')
             alert.classList.add('success');
             alert.textContent=data.message;
             setTimeout(()=>{
@@ -50,7 +51,7 @@ loginForm.addEventListener('submit',(e)=>{
 
 //reset password
 
-reset_pwd.addEventListener('click',(e)=>{
-    e.preventDefault();
-    
-})
+// reset_pwd.addEventListener('click',(e)=>{
+//     e.preventDefault();
+//     window.location.href="/resetPassword";
+// })

@@ -18,7 +18,7 @@
                             <input type="checkbox" class="form-check-input" id="remember">
                             <label class="form-check-label text" for="remember">Remember me</label>
                         </div>
-                        <a href="#" id="reset-pwd" class="small text-decoration-none text-muted">Forgot password?</a>
+                        <a href="/resetPassword" id="reset-pwd" class="small text-decoration-none text-muted">Forgot password?</a>
                     </div>
                     <button type="submit" class="btn btn-teal w-100 fw-bold mb-3 login-btn">Login</button>
                     <div class="alert alert-primary" style="display:none" role="alert">
@@ -30,6 +30,6 @@
                     </div>
                 </form>
 
-            </div>
+</div>
 @vite('resources/js/login.js')
 </x-authlayout>
