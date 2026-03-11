@@ -9,12 +9,12 @@
     color:var(--text-on-whitebg)!important ;
 }
 
-.register-btn{
+.register-btn,.verify-btn,.resendCode-btn{
     background-color: var(white);
     color: var(--text-on-whitebg);
 }
 
-.register-btn:hover{
+.register-btn:hover,.verify-btn:hover, .resendCode-btn:hover{
     background-color: var(--first-background)!important;
     color: white;
 }
@@ -33,4 +33,8 @@ color:var(--white);
 display: block !important;
 background-color: var(--error);
 color: var(--white);
+}
+
+#spinner{
+    color: var(--first-background);
 }

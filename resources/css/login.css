@@ -60,6 +60,18 @@ padding: 2rem;
     color: white;
 }
 
-a[href="/register"]:hover{
+a[href="/register"]:hover,#reset-pwd:hover{
     text-decoration: underline !important;
+}
+
+.success{
+display: block !important;
+background-color: var(--success);
+color:var(--white);
+}
+
+.error{
+display: block !important;
+background-color: var(--error);
+color: var(--white);
 }

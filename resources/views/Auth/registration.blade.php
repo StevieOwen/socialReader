@@ -18,6 +18,9 @@
         </div>
         
         <button type="submit" class="btn btn-teal w-100 fw-bold mb-3 register-btn">Register</button>
+        <div id="spinner" class="spinner-border spinner-border-sm d-none" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
         <div class="text-center">
             <span class="small text-muted">Already have an account?</span>
             <a href="/login" class="small fw-bold text-decoration-none text" >Sign in</a>
