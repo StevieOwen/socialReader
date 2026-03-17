@@ -20,6 +20,7 @@
 }
 body{
     overflow-x: hidden;
+    height: auto;
 }
 
 nav{
@@ -53,7 +54,8 @@ main{
 }
 aside{
     background-color: var(--first-background);
-    height: 100dvh;
+    height: auto;
+    min-height: 100dvh;
 }
 aside header {
     display: flex ;
@@ -122,10 +124,10 @@ aside header {
     transform: translateX(5px);
     color: var(--white);
 }
-#library header{
+.section-header{
     padding: 0.5rem;
 }
-#library header h4{
+.section-header h4{
     color: var(--text-on-whitebg);
     font-family: "Carattere", cursive;
     font-weight: 400;
@@ -144,6 +146,64 @@ aside header {
 .book-card{
     background-color: var(--background-card);
 }
+
+
+#form-add-book{
+    margin-right: 2rem;
+
+}
+
+#view-books{
+    padding: 0.1rem auto;
+    border-radius: 16px;
+    background-color: var(--black-shadow);
+    color: var(--white);
+    margin-bottom: 1rem; 
+
+}
+
+#upload-book{
+    color: var(--text-on-whitebg)!important;
+}
+#upload-book:hover{
+    color: var(--white)!important;
+    background-color: var(--first-background);
+}
+
+.success{
+display: block !important;
+background-color: var(--success);
+color:var(--white);
+}
+
+.error{
+display: block !important;
+background-color: var(--error);
+color: var(--white);
+}
+
+#upload-book{
+    margin-bottom: 0.5rem;
+}
+
+.book-card{
+
+}
+#read{
+    padding: 0.5rem auto;
+    border-radius: 16px;
+    background-color: var(--black-shadow);
+    color: var(--white);
+    margin-bottom: 1rem; 
+}
+
+#book-shelf{
+    display: flex;
+    /* justify-content: center; */
+    gap:1rem;
+    flex-wrap: wrap;
+}
+
 /* laptop/desktop */
 
 @media (min-width:1025px) and (max-width:1280px){
@@ -183,7 +243,7 @@ aside header {
         overflow-x: hidden !important;
     }
    nav{
-    max-width: 100vh;
+    max-width: auto;
    }
    .show{
     display: block !important;
@@ -199,6 +259,7 @@ aside header {
         flex-direction: column;
         gap: 1rem;
         justify-content: center;
+        align-items: center;
     }
 }
 

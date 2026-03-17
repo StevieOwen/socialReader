@@ -3,6 +3,8 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\LibraryController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -29,3 +31,9 @@ Route::post('/checkEmail', [AuthController::class,'checkEmail']);
 
 Route::get('/logout', [AuthController::class,'logout']);
 Route::post('/logout', [AuthController::class,'logout']);
+
+Route::get('/addBook', [LibraryController::class,'addBook']);
+Route::post('/addBook', [LibraryController::class,'addBook']);
+
+Route::get('/fetchBook', [LibraryController::class,'fetchBook']);
+Route::post('/fetchBook', [LibraryController::class,'fetchBook']);

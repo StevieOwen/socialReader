@@ -1,4 +1,5 @@
 let customer_name=localStorage.getItem('customer_name');
+let customer_id=localStorage.getItem('customer_id');
 let token=localStorage.getItem('token');
 if(!token){
     window.location.href="/login";
@@ -61,8 +62,7 @@ user_name.textContent=customer_name;
             
             aside.classList.replace('col-5','col-3');
             main_section.classList.replace('col-7','col-9');
-        
-            
+                    
         }
 
 })
@@ -83,4 +83,101 @@ aside.addEventListener('click',e=>{
     clicked.classList.add('active')
         
     
+})
+const view_books=document.querySelector('#view-books');
+const showform_book=document.querySelector('#add-book');
+const form_section=document.querySelector('#form-add-book');
+const library_section=document.querySelector('#library_section');
+
+showform_book.addEventListener('click',(e)=>{
+    e.preventDefault();
+    form_section.classList.remove('d-none');
+    library_section.classList.add('d-none');
+
+})
+
+view_books.addEventListener('click',(e)=>{
+    e.preventDefault();
+    form_section.classList.add('d-none');
+    library_section.classList.remove('d-none');
+})
+
+//submit books data
+
+const bookUpload_form=document.querySelector('#bookUpload-form');
+
+bookUpload_form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+
+    const form = e.target;
+    const formData = new FormData(form);
+    const btn = form.querySelector('button');
+    const alert =document.querySelector(".alert");
+    formData.append('cust_id',customer_id);
+    btn.disabled = true;
+    btn.innerText = "Uploading Book...";
+
+    fetch(`/addBook`,{
+        method: "POST",
+        body: formData,
+        headers: {
+            // Laravel requires the CSRF token in the header for AJAX/Fetch
+            'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+            'Accept': 'application/json'
+        }   
+    }).then(response=>response.json())
+      .then(data=>{
+        if(data.status=="success"){
+            alert.classList.remove('d-none');
+            alert.classList.remove('error');
+            alert.classList.add('success');
+            alert.textContent=data.message;
+             setTimeout(()=>{
+               alert.classList.add("d-none");
+               alert.classList.remove('success');
+               bookUpload_form.reset();
+               btn.disabled = false;
+               btn.innerText = " Upload to Library"; 
+
+             },1000)
+        }else{
+            alert.classList.remove('d-none');
+            alert.classList.add('error');
+            alert.textContent=data.message;
+            btn.disabled = false;
+            btn.innerText = " Upload to Library";   
+        }
+    })  
+
+})
+
+
+const userData = new FormData();
+userData.append('cust_id',customer_id);
+
+
+fetch(`fetchBook`,{
+     method: "POST",
+    body: userData,
+    headers: {
+        // Laravel requires the CSRF token in the header for AJAX/Fetch
+        'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value,
+        'Accept': 'application/json'
+    }   
+}).then(response=>response.json())
+  .then(data=>{
+        const book_shelf=document.querySelector('#book-shelf');
+        const books=data.datas;
+        books.forEach((book)=>{
+            console.log(book)
+            book_shelf.innerHTML+=`<div class="card book-card" style="width: 18rem; ">
+                                    <div class="card-body">
+                                        <h5 class="card-title">${book['book_title']}</h5>
+                                        <h5 class="card-title">${book['book_author']}</h5>
+                                        <button type="button" id="read">Start Reading</button>
+                                    </div>
+                                    </div>`
+        })
+
+
 })

@@ -131,7 +131,7 @@ class AuthController extends Controller
              return response()->json([
                 'status' => 'success',
                 'message' => 'Email verifed! You will be redirected to the login page',
-            ], 201);
+            ], 200);
         }elseif($token_db!=$token){
              return response()->json([
                 'status' => 'invalid',

@@ -33,7 +33,7 @@
 </nav>
 
 <main class="container-flex">
-  <div class="row  main-container" >
+  <div class="row main-container" >
 
     <div class="burger-menu d-none show">
     <span><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M3.75 6.5a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75m0 5.5a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75m0 5.5a.75.75 0 0 1 .75-.75h15a.75.75 0 0 1 0 1.5h-15a.75.75 0 0 1-.75-.75'/></svg></span>
@@ -62,33 +62,92 @@
     </aside>
 
     <div class='col-9 main-section' >
-      <section id="library">
-        <header>
+      <section id="library_section">
+        <header class="section-header">
           <h4>Keep the Story going ... </h4>
+          <hr style=" border:1px solid  #000;">
         </header>
-        <hr style=" border:1px solid  #000;">
-
+      
         <button type="button" id="add-book"> Add Book <svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M17.4 2.25H8.17c-.534 0-.98 0-1.345.03-.38.03-.736.098-1.074.27-.82.417-1.204 1.088-1.37 1.78-.137.566-.134 1.189-.132 1.687l.001.183v14.05a1.5 1.5 0 0 0 1.5 1.5h10.652c.617 0 1.28-.086 1.756-.548.484-.467.592-1.137.592-1.802v-.908a1.65 1.65 0 0 0 .65-.583c.278-.432.35-.966.35-1.509V4.6c0-.616-.086-1.28-.547-1.757-.467-.484-1.136-.593-1.803-.593m-.998 18H5.75a1.5 1.5 0 0 1 1.5-1.5h10v.65c0 .57-.11.7-.134.724-.031.03-.167.126-.714.126M12.75 7.5v1.75h1.75a.75.75 0 0 1 0 1.5h-1.75v1.75a.75.75 0 0 1-1.5 0v-1.75H9.5a.75.75 0 0 1 0-1.5h1.75V7.5a.75.75 0 0 1 1.5 0'/></svg></button>
+
+        {{-- <div class="card shadow-sm">
+            <img src="https://placehold.co/400x600/2c3e50/ffffff?text=1773767166_Kétala" 
+                class="card-img-top" 
+                alt="Cover">
+            
+            <div class="card-body">
+                <h5 class="card-title">Ketala</h5>
+                <p class="small text-muted">Fatou Diome</p>
+            </div>
+        </div> --}}
+
 
         <div id="book-shelf">
 
-            <div class="card book-card" style="width: 18rem;">
-              <img src="..." class="card-img-top" alt="...">
-              <div class="card-body">
-                <h5 class="card-title">Book title</h5>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-
-
-        </div>
+            
 
         </div>
       
       </section>
 
+      <section id="socialGroup_section">
+      </section>
 
+      <section id="myChats_section">
+      </section>
+
+      <section class="d-none" id="form-add-book">
+        <header class="section-header">
+          <h4>Expand your library by uploading a PDF or EPUB file. ... </h4>
+          <button type="submit" id="view-books" ><svg width="24" height="24" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d='M10.5 11.5V9.522L12 8.428l1.5 1.094V11.5a.25.25 0 0 1-.25.25h-2.5a.25.25 0 0 1-.25-.25'/><path d='M17.4 2.25c.667 0 1.336.109 1.803.593.46.478.547 1.14.547 1.757v11.8c0 .543-.072 1.077-.35 1.509a1.65 1.65 0 0 1-.65.583v.908c0 .666-.108 1.335-.591 1.802-.478.462-1.14.548-1.757.548H5.75a1.5 1.5 0 0 1-1.5-1.5V6.017c-.003-.498-.006-1.12.13-1.687.167-.692.552-1.363 1.371-1.78.338-.172.694-.24 1.074-.27.365-.03.81-.03 1.345-.03zm-.998 18c.547 0 .683-.096.714-.126.025-.024.134-.155.134-.724v-.65h-10a1.5 1.5 0 0 0-1.5 1.5zm-3.96-13.356a.75.75 0 0 0-.884 0l-2.25 1.64A.75.75 0 0 0 9 9.14v2.36c0 .966.784 1.75 1.75 1.75h2.5A1.75 1.75 0 0 0 15 11.5V9.14a.75.75 0 0 0-.308-.606z'/></svg>View added books</button>
+          <hr style=" border:1px solid  #000;">
+        </header>
+        <div class="alert alert-primary d-none"  role="alert"></div>
+        
+        <form id="bookUpload-form" action="" method="POST" enctype="multipart/form-data">
+          @csrf
+
+          <div class="mb-3">
+              <label class="form-label small fw-bold">Book Title</label>
+              <input type="text" name="book_title" class="form-control" placeholder="e.g. Notes from Underground" required>
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label small fw-bold">Author</label>
+              <input type="text" name="book_author" class="form-control" placeholder="e.g. Fyodor Dostoevsky" required>
+          </div>
+
+          <div class="mb-3">
+              <label class="form-label small fw-bold">Privacy Settings</label>
+              <div class="d-flex gap-3 mt-1">
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="private" id="privateYes" value="private" checked>
+                      <label class="form-check-label small" for="privateYes">Private (Only Me)</label>
+                  </div>
+                  <div class="form-check">
+                      <input class="form-check-input" type="radio" name="private" id="privateNo" value="public">
+                      <label class="form-check-label small" for="privateNo">Public (Shared)</label>
+                  </div>
+              </div>
+          </div>
+
+          <div class="mb-4">
+              <label class="form-label small fw-bold">Upload File (PDF or EPUB)</label>
+              <div class="upload-area p-4 border text-center" style="border-style: dashed !important; border-color: var(--light-daylight) !important; background-color: #fbfcfe; border-radius: 10px;">
+                  <input type="file" name="book" class="form-control" accept=".pdf,.epub" required>
+                  <div class="mt-2 text-muted small">Maximum file size: 20MB</div>
+              </div>
+          </div>
+
+          <button type="submit" id="upload-book" class="btn w-100 fw-bold text-white py-2">
+            Upload to Library
+          </button>
+          
+          
+        </form>
+      </section>
     </div>
+    
 
 
   </div>
