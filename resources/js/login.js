@@ -9,10 +9,11 @@ loginForm.addEventListener('submit',(e)=>{
 
     const formData = new FormData(loginForm);
     const data = Object.fromEntries(formData.entries());
-    data.cust_id=cust_id;
+    // data.cust_id=cust_id;
 
     fetch('/login',{
         method: 'POST', 
+        credentials: 'include',
         headers: {
             'Content-Type': 'application/json',
             'Accept': 'application/json',
@@ -24,12 +25,15 @@ loginForm.addEventListener('submit',(e)=>{
       .then(data=>{
         console.log(data);
         if(data.status=="success"){
-             alert.classList.remove('error')
+            alert.classList.remove('error')
             alert.classList.add('success');
             alert.textContent=data.message;
+            localStorage.setItem('token',data.access_token);
+            localStorage.setItem('customer_name',data.customer['name']);
+            localStorage.setItem('customer_id',data.customer['id']);
             setTimeout(()=>{
-              window.location.href='/'  
-            },2500)
+              window.location.href='/home'  
+            },1500)
 
         }else if(data.status=="error"){
             if(data.message=='Email not verified'){
@@ -49,9 +53,3 @@ loginForm.addEventListener('submit',(e)=>{
 
 })
 
-//reset password
-
-// reset_pwd.addEventListener('click',(e)=>{
-//     e.preventDefault();
-//     window.location.href="/resetPassword";
-// })

@@ -2,12 +2,15 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\HomeController;
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/login', [AuthController::class,'renderLogin']);
+Route::get('/login', [AuthController::class,'renderLogin'])->name('login');
 Route::post('/login', [AuthController::class,'loginHandler']);
+Route::get('/home', [HomeController::class,'renderHome']);
+Route::post('/home', [HomeController::class,'renderHome']);
 
 Route::get('/register', [AuthController::class,'renderRegistration']);
 Route::post('/register', [AuthController::class,'registerCustomer']);
@@ -23,3 +26,6 @@ Route::post('/resetPassword', [AuthController::class,'resetPassword']);
 
 Route::get('/checkEmail', [AuthController::class,'checkEmail']);
 Route::post('/checkEmail', [AuthController::class,'checkEmail']);
+
+Route::get('/logout', [AuthController::class,'logout']);
+Route::post('/logout', [AuthController::class,'logout']);

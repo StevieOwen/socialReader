@@ -10,6 +10,8 @@ use Illuminate\Http\JsonResponse;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class AuthController extends Controller
 {
@@ -179,75 +181,76 @@ class AuthController extends Controller
 
        }
         //login Handler process
-       public function loginHandler(Request $request){
-
-            $userdatas=$request->all();
-            $cust_id=$request['cust_id'];
-
-            if(!empty($userdatas['cust_email'])){
-                
-                $cust_db=Customer::where('cust_email',$userdatas['cust_email'])->first();
-                
-                if($cust_db){
-                    if(!empty($userdatas['cust_password'])){
-                        if(Hash::check($userdatas['cust_password'],$cust_db->cust_password) && $cust_db->cust_emailverified=="yes"){
-                            return response()->json([
-                                'status' => 'success',
-                                'message' => 'Welcome to Social Reader'
-                            ], 201);
-
-                        }elseif($cust_db->email_verified=="no"){
-                             //delete old token
-                            token::where('cust_id',$cust_id)->delete();
-                            //generate a new token and save
-                            $newtoken= $this->token_generation($cust_id);       
-                            $customer=Customer::where('cust_id',$cust_id)->first();
-
-                            $data=['fullName'=>$customer->cust_fullName,
-                                    'token'=>$newtoken["token"],
-                                    ] ;
-                            token::create($newtoken);
-                            Mail::send('emails.welcomeMail', $data, function($message) use ($customer) {
-                            $message->to($customer->cust_email, $customer->cust_fullName)
-                            ->subject('Welcome to Social Reader - Your Next Chapter Awaits');});
-                            
-                            return response()->json([
-                                'status' => 'error',
-                                'message' => 'Email not verified'
-                            ], 500);   
-                        }elseif(!Hash::check($userdatas['cust_password'],$cust_db->cust_password)){
-                            return response()->json([
-                                'status' => 'error',
-                                'message' => 'Incorrect password'
-                            ], 500); 
-                        }
+    public function loginHandler(Request $request){
+        $validated=$request->validate(
+                [
+                    'cust_email'=>'required|email',
+                    'cust_password'=>'required'
+                ]
+            );
 
 
-                    }else{
-                        return response()->json([
-                        'status' => 'error',
-                        'message' => 'Please provide your password'
-                    ], 500);
-
-                    }
-
-
-                }else{
-                     return response()->json([
-                        'status' => 'error',
-                        'message' => 'Email doesn\'t exist, please create an account'
-                    ], 500);
-                        exit;
-                }
-            }else{
+        $customer = Customer::where('cust_email', $validated["cust_email"])->first();
+        if(!$customer){
                 return response()->json([
-                        'status' => 'error',
-                        'message' => 'You should provide your email'
-                ], 500);
-                exit;
-            }   
-
+                    'status' => 'error',
+                    'message' => 'Email doesn\'t exist'
+                    //401: unauthorized
+                ], 401);
         }
+
+        if($customer['cust_emailverified']=='yes'){
+            if (Hash::check($request->cust_password, $customer->cust_password)) {
+            
+            // 3. Generate the Sanctum token
+            // This requires 'use HasApiTokens' inside the Customer model
+            $token = $customer->createToken('auth_token')->plainTextToken;
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Welcome to Social Reader',
+                'access_token' => $token,
+                'token_type' => 'Bearer',
+                'customer' => [
+                    'name' => $customer->cust_fullName, // adjust based on your columns
+                    'id' => $customer->cust_id
+                ]
+            ],200);
+            }
+            return response()->json([
+                'status' => 'error', 
+                'message' => 'Invalid  password'
+            ], 401);
+
+        }else{
+            token::where('cust_id',$customer['cust_id'])->delete();
+            //generate a new token and save
+            $newtoken= $this->token_generation($customer['cust_id']);       
+            $data=['fullName'=>$customer->cust_fullName,
+                    'token'=>$newtoken["token"],
+                    ] ;
+            token::create($newtoken);
+            Mail::send('emails.welcomeMail', $data, function($message) use ($customer) {
+            $message->to($customer->cust_email, $customer->cust_fullName)
+            ->subject('Welcome to Social Reader - Your Next Chapter Awaits');});
+            
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Email not verified'
+                //403 forbidden
+            ], 403);   
+        }
+
+
+           
+
+        
+    }
+
+           
+        
+
+
         public function renderResetPassword(){
             return view('Auth/resetPassword');
         }
@@ -297,6 +300,15 @@ class AuthController extends Controller
             ], 500);
             }
 
+        }
+
+        public function logout(Request $request){
+            $request->user()->currentAccessToken()->delete();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Token deleted successfully'
+            ]);
         }
 }
 

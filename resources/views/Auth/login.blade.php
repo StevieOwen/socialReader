@@ -4,7 +4,7 @@
 
 <div class="col" id="form-side">
 @csrf
-                <form id='loginForm' action="auth_handler.php" method="POST">
+                <form id='loginForm' action="/login" method="POST">
                     <div class="mb-3">
                         <label class="form-label small text fw-bold text-muted">Email Address</label>
                         <input type="email" name="cust_email" class="form-control" placeholder="name@mail.com" required>
