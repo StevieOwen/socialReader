@@ -32,8 +32,11 @@ Route::post('/checkEmail', [AuthController::class,'checkEmail']);
 Route::get('/logout', [AuthController::class,'logout']);
 Route::post('/logout', [AuthController::class,'logout']);
 
-Route::get('/addBook', [LibraryController::class,'addBook']);
+Route::get('/addBook', [LibraryController::class,'renderaddbook']);
 Route::post('/addBook', [LibraryController::class,'addBook']);
 
 Route::get('/fetchBook', [LibraryController::class,'fetchBook']);
 Route::post('/fetchBook', [LibraryController::class,'fetchBook']);
+
+Route::get('/renderBook', [LibraryController::class,'renderBook']);
+Route::post('/renderBook', [LibraryController::class,'renderBook']);

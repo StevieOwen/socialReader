@@ -10,7 +10,7 @@ class HomeController extends Controller
     
     public function renderHome(){
 
-         return view('home');
+        return view('home');
 
     }
 }

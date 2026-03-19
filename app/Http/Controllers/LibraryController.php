@@ -9,6 +9,9 @@ use Spatie\PdfToImage\Pdf;
 
 class LibraryController extends Controller
 {
+    public function renderaddbook(){
+        return view('add_book');
+    }
     public function addbook(Request $request){
         $validated=$request->validate([
             'book_title'=>'required|string',
@@ -39,7 +42,7 @@ class LibraryController extends Controller
         
    
         $book_datas=['book_id'=>'Book_'. random_int(100000,999999),
-                'book'=>$fileName,
+                'book'=>$filePath,
                 'book_title'=>$validated['book_title'],
                 'book_author'=>$validated['book_author'],
                 'cust_id'=>$request->cust_id,
@@ -83,6 +86,10 @@ class LibraryController extends Controller
                 'message' => 'No Book Found!'
             ], 500);
         }
+    }
+
+    public function renderBook(){
+        return view('book');
     }
 
 }

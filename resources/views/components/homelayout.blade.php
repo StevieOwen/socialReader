@@ -1,9 +1,8 @@
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
 
 @vite('resources/css/home.css')
-<meta name="csrf-token" content="{{ csrf_token() }}">
 <div class="dashboard-container">
 
     <!-- Top Header -->
@@ -22,14 +21,14 @@
         <div class="user-actions">
             <div class="user-profile">
                 <img src="https://i.pravatar.cc/40" class="avatar">
-                <span class="user-name">Stevie Owen</span>
+                <span>Stevie Owen</span>
             </div>
 
             <button class="icon-btn" title="Settings">
                 ⚙️
             </button>
 
-            <button class="icon-btn logout" id="logout-btn" title="Logout">
+            <button class="icon-btn logout" title="Logout">
                 ⎋
             </button>
         </div>
@@ -43,13 +42,13 @@
         <aside class="left-page">
             <div class="profile">
                 <img src="https://i.pravatar.cc/80" class="avatar-lg">
-                <h3 class="user-name">Stevie Owen</h3>
+                <h3>Stevie Owen</h3>
             </div>
 
             <nav class="nav">
-                <a class="menu-item active">📖 My Library</a>
-                <a class="menu-item">👥 Social Groups</a>
-                <a class="menu-item">💬 My Chats</a>
+                <a class="active">📖 My Library</a>
+                <a>👥 Social Groups</a>
+                <a>💬 My Chats</a>
             </nav>
 
             <div class="bookshelf"></div>
@@ -71,7 +70,7 @@
                 <div class="book-grid">
 
                     <!-- Book Card -->
-                    {{-- <div class="book-card">
+                    <div class="book-card">
                         <img src="https://covers.openlibrary.org/b/id/8231996-L.jpg">
                         <div class="book-info">
                             <h3>L'alchimiste</h3>
@@ -85,10 +84,10 @@
 
                             <button class="read-btn">Continue Reading</button>
                         </div>
-                    </div> --}}
+                    </div>
 
                     <!-- Another Book -->
-                    {{-- <div class="book-card">
+                    <div class="book-card">
                         <img src="https://covers.openlibrary.org/b/id/10521258-L.jpg">
                         <div class="book-info">
                             <h3>Ketala</h3>
@@ -102,7 +101,7 @@
 
                             <button class="read-btn">Continue Reading</button>
                         </div>
-                    </div> --}}
+                    </div>
 
                 </div>
             </section>
@@ -131,5 +130,4 @@
 
     </div>
 </div>
-@vite('resources/js/home.js')
-@endsection
+@endsection --}}
