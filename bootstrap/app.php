@@ -19,6 +19,9 @@ return Application::configure(basePath: dirname(__DIR__))
         // Ensure stateful cookies are allowed
         $middleware->statefulApi();
     })
+    ->withMiddleware(function (Middleware $middleware) {
+    $middleware->trustProxies(at: '*'); 
+    })
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();

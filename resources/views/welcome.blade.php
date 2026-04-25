@@ -74,7 +74,7 @@
 
 <!-- SOCIAL PROOF -->
 <section class="social-proof">
-    Used by international students across 20+ countries
+    Used by Readers across 20+ countries
 </section>
 
 <!-- FEATURES -->

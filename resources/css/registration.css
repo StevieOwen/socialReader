@@ -38,3 +38,60 @@ color: var(--white);
 #spinner{
     color: var(--first-background);
 }
+
+.password-wrapper {
+    position: relative;
+    width: 100%; /* Or whatever width your form uses */
+}
+
+#pwd {
+    width: 100%;
+    padding-right: 40px; /* Make room so text doesn't overlap the icon */
+}
+
+#pwd-icon {
+    position: absolute;
+    right: 10px;        /* Distance from the right edge */
+    top: 50%;           /* Move to middle height */
+    transform: translateY(-40%); /* Perfectly center vertically */
+    width: 30px;        /* Fixed size usually looks better for icons */
+    height: 25px;
+    cursor: pointer;
+    /* fill: #666;         Icon color */
+}
+
+
+
+
+
+
+/* #pwd-icon{
+    display: block;
+    width:5%;
+    transform: translate(460px,-29px);
+} */
+
+
+/* Tablet */
+/* @media (max-width: 1100px) {
+   #pwd-icon{
+    transform: translate(10px,-29px);
+    }
+
+} */
+
+/* Mobile */
+/* @media (max-width: 768px) {
+   #pwd-icon{
+    transform: translate(10px,-29px);
+    }
+ 
+}
+
+@media (max-width: 900px) {
+   #pwd-icon{
+    width:9%;
+    transform: translate(250px,-29px);
+    }
+
+} */

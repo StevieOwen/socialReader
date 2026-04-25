@@ -4,7 +4,9 @@
 
 @vite('resources/css/home.css')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<div class="dashboard-container">
+<div class="dashboard">
+
+    <div class="dashboard-container">
 
     <!-- Top Header -->
     <header class="topbar">
@@ -54,12 +56,8 @@
 
             <div class="bookshelf"></div>
         </aside>
-
-        <!-- CENTER SPINE -->
-        <div class="book-spine"></div>
-
-        <!-- RIGHT PAGE (Main Content) -->
-        <main class="right-page">
+            <!-- RIGHT PAGE (Main Content) -->
+        <main class="right-page" >
 
             <h1 class="headline">Keep the Story going …</h1>
 
@@ -106,30 +104,11 @@
 
                 </div>
             </section>
-        </main>
-
-        <!-- ACTIVITY PANEL -->
-        <aside class="activity-panel">
-            <h3>Recent Activity</h3>
-
-            <div class="activity-card">
-                <p><strong>Chloe</strong> • Page 47</p>
-                <span>“Such a beautiful passage.”</span>
-            </div>
-
-            <div class="activity-card">
-                <p><strong>Raj</strong> • Page 25</p>
-                <span>“My favorite part so far.”</span>
-            </div>
-
-            <div class="activity-card">
-                <p><strong>Mari</strong> • Page 43</p>
-                <span>“What does this symbolize?”</span>
-            </div>
-
-        </aside>
-
+        </main>        
+        
     </div>
+
+   
 </div>
 @vite('resources/js/home.js')
 @endsection

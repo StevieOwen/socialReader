@@ -75,3 +75,24 @@ display: block !important;
 background-color: var(--error);
 color: var(--white);
 }
+
+.password-wrapper {
+    position: relative;
+    width: 100%; /* Or whatever width your form uses */
+}
+
+#pwd {
+    width: 100%;
+    padding-right: 40px; /* Make room so text doesn't overlap the icon */
+}
+
+#pwd-icon {
+    position: absolute;
+    right: 10px;        /* Distance from the right edge */
+    top: 50%;           /* Move to middle height */
+    transform: translateY(-40%); /* Perfectly center vertically */
+    width: 30px;        /* Fixed size usually looks better for icons */
+    height: 25px;
+    cursor: pointer;
+    /* fill: #666;         Icon color */
+}

@@ -1,4 +1,10 @@
+let customer_name=localStorage.getItem('customer_name');
 let customer_id=localStorage.getItem('customer_id');
+let token=localStorage.getItem('token');
+if(!token){
+    window.location.href="/login";
+}
+
 
 //submit books data
 document.getElementById('bookInput').addEventListener('change', function(e) {
